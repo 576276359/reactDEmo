@@ -1,50 +1,114 @@
-/* Base Application Styles */
-//body {
-//color: #fff;
-//background: #222;
-//}
-//
-//.index img {
-//margin: 40px auto;
-//border-radius: 4px;
-//background: #fff;
-//display: block;
-//}
-//
-//.index .notice {
-//margin: 20px auto;
-//padding: 15px 0;
-//text-align: center;
-//border: 1px solid #000;
-//border-width: 1px 0;
-//background: #666;
-//}
-html,body{
-    background: #222;
+@font-face {
+  font-family: 'icons-arrow';
+  src: url("../fonts/icons/turn-arrow.svg") format("svg"),url("../fonts/icons/turn-arrow.eot") format("embeded-opentype"),url("../fonts/icons/turn-arrow.woff") format("woff"),url("../fonts/icons/turn-arrow.ttf") format("truetype");
+
 }
+html,body{
+  background: #222;
+  width: 100%;
+  height: 100%;
+}
+
 .app{
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 /*stage start*/
 .stage{
-    position: relative;
-    width: 100%;
-    height: 680px;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 /*stage end*/
+
 .img-sec{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: #ddd;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #ddd;
+  perspective: 1800px;
+  @at-root {
+    .imgFigure{
+      position: absolute;
+      width: 320px;
+      height: 360px;
+      margin: 0;
+      padding: 40px;
+      box-sizing: border-box;
+      background: #fff;
+      cursor: pointer;
+      transform-origin: 0 50% 0;
+      transform-style: preserve-3d;
+      transition: transform .6s ease-in-out, left .6s ease-in-out, top .6s ease-in-out;
+      &.isInverse {
+        transform: translate(320px) rotateY(180deg);
+      }
+      >img{
+        width: 240px;
+        height: 240px;
+      }
+      figcaption{
+        text-align: center;
+        .imgTitle{
+          margin: 20px 0 0 0;
+          color: #a7a0a2;
+          font-size: 16px;
+        }
+        .img-back{
+          position: absolute;
+          /* 相对于img-sec进行定位 */
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+          padding: 50px 40px;
+          overflow: auto;
+          color: #666;
+          background: #fff;
+          transform: rotateY(180deg) translateZ(1px);
+        }
+      }
+    }
+  }
 }
 .controlor{
-    position: absolute;
-    left: 0;
-    bottom: 30px;
-    z-index: 101;
-    width: 100%;
-    text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: 30px;
+  z-index: 101;
+  width: 100%;
+  text-align: center;
+  @at-root {
+    .controller-unit{
+      vertical-align: middle;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      margin: 0 5px;
+      text-align: center;
+      cursor: pointer;
+      background: #aaa;
+      border-radius: 50%;
+      transform: scale(0.5);
+      transition: transform 0.6s ease-in-out,background-cloro 0.3s;
+      &.is-center{
+        transform: scale(1);
+        background: #888;
+        &::after{
+          font-family:"icons-arrow" ;
+          content: "\e600";
+          color: #fff;
+          line-height: 30px;
+        }
+        &.is-inverse{
+          background-color: #555;
+          transform: rotateY(180deg);
+        }
+      }
+    }
+  }
 }
